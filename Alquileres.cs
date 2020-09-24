@@ -33,7 +33,9 @@ namespace TrabajoPractico1
         public int ID { get => id; set => id = value; }
         [Column(TypeName ="Date")]
         public DateTime? FechaAlquiler { get => fechaAlquiler; set => fechaAlquiler = value; }
+        [Column(TypeName = "Date")]
         public DateTime? FechaReserva { get => fechaReserva; set => fechaReserva = value; }
+        [Column(TypeName = "Date")]
         public DateTime? FechaDevolucion { get => fechaDevolucion; set => fechaDevolucion = value; }
     }
 }

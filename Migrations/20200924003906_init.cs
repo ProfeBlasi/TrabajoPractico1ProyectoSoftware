@@ -62,9 +62,9 @@ namespace TrabajoPractico1.Migrations
                     Cliente = table.Column<int>(nullable: false),
                     ISBN = table.Column<string>(type: "varchar(45)", nullable: false),
                     Estado = table.Column<int>(nullable: false),
-                    FechaAlquiler = table.Column<DateTime>(nullable: true),
-                    FechaReserva = table.Column<DateTime>(nullable: true),
-                    FechaDevolucion = table.Column<DateTime>(nullable: true)
+                    FechaAlquiler = table.Column<DateTime>(type: "Date", nullable: true),
+                    FechaReserva = table.Column<DateTime>(type: "Date", nullable: true),
+                    FechaDevolucion = table.Column<DateTime>(type: "Date", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -122,6 +122,21 @@ namespace TrabajoPractico1.Migrations
                     { "567", "Sofocles", "Abierta", "Santillana", "vacio", 7, "Edipo Rey" },
                     { "678", "Mark Twain", "Cerrada", "Puerto de palos", "vacio", 2, "Las aventuras de Huckleberry Finn" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Alquileres",
+                columns: new[] { "ID", "Cliente", "Estado", "FechaAlquiler", "FechaDevolucion", "FechaReserva", "ISBN" },
+                values: new object[] { 1, 1234, 1, new DateTime(2020, 9, 23, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2020, 9, 30, 0, 0, 0, 0, DateTimeKind.Local), null, "123" });
+
+            migrationBuilder.InsertData(
+                table: "Alquileres",
+                columns: new[] { "ID", "Cliente", "Estado", "FechaAlquiler", "FechaDevolucion", "FechaReserva", "ISBN" },
+                values: new object[] { 2, 2345, 2, null, null, new DateTime(2020, 9, 23, 0, 0, 0, 0, DateTimeKind.Local), "234" });
+
+            migrationBuilder.InsertData(
+                table: "Alquileres",
+                columns: new[] { "ID", "Cliente", "Estado", "FechaAlquiler", "FechaDevolucion", "FechaReserva", "ISBN" },
+                values: new object[] { 3, 3456, 3, null, new DateTime(2020, 9, 23, 0, 0, 0, 0, DateTimeKind.Local), null, "345" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Alquileres_Cliente",

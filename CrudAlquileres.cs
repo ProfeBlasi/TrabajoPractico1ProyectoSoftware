@@ -171,6 +171,7 @@ namespace TrabajoPractico1
                     crudLibro.DescuentoStock(isbn);
                     alqui.Estado = estadoId;
                     alqui.FechaAlquiler = DateTime.Today;
+                    alqui.FechaDevolucion = DateTime.Today.AddDays(7);
                 };
                 contexto.Alquileres.Add(alqui);
                 contexto.SaveChanges();
@@ -188,6 +189,7 @@ namespace TrabajoPractico1
                     Alquileres reserva = lista[0];
                     reserva.FechaReserva = null;
                     reserva.FechaAlquiler = DateTime.Today;
+                    reserva.FechaDevolucion = DateTime.Today.AddDays(7);
                     reserva.Estado = 1;
                     contexto.Alquileres.Update(reserva);
                     contexto.SaveChanges();

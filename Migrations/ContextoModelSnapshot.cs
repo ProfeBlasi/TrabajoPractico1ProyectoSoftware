@@ -33,13 +33,13 @@ namespace TrabajoPractico1.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("FechaAlquiler")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<DateTime?>("FechaDevolucion")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<DateTime?>("FechaReserva")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Date");
 
                     b.Property<string>("ISBN")
                         .IsRequired()
@@ -54,6 +54,33 @@ namespace TrabajoPractico1.Migrations
                     b.HasIndex("ISBN");
 
                     b.ToTable("Alquileres");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Cliente = 1234,
+                            Estado = 1,
+                            FechaAlquiler = new DateTime(2020, 9, 23, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaDevolucion = new DateTime(2020, 9, 30, 0, 0, 0, 0, DateTimeKind.Local),
+                            ISBN = "123"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Cliente = 2345,
+                            Estado = 2,
+                            FechaReserva = new DateTime(2020, 9, 23, 0, 0, 0, 0, DateTimeKind.Local),
+                            ISBN = "234"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Cliente = 3456,
+                            Estado = 3,
+                            FechaDevolucion = new DateTime(2020, 9, 23, 0, 0, 0, 0, DateTimeKind.Local),
+                            ISBN = "345"
+                        });
                 });
 
             modelBuilder.Entity("TrabajoPractico1.Cliente", b =>

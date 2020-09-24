@@ -154,8 +154,8 @@ namespace TrabajoPractico1
                     Estado = 1,
                     FechaAlquiler = DateTime.Today,
                     FechaReserva=null,
-                    FechaDevolucion=null,
-                });
+                    FechaDevolucion = DateTime.Today.AddDays(7),
+            });
                 entity.HasData(new Alquileres
                 {
                     ID = 2,
@@ -171,10 +171,10 @@ namespace TrabajoPractico1
                     ID = 3,
                     Cliente = 3456,
                     ISBN = "345",
-                    Estado = 3,
-                    FechaAlquiler = null,
+                    Estado = 1,
+                    FechaAlquiler = DateTime.Today,
                     FechaReserva = null,
-                    FechaDevolucion = DateTime.Today,
+                    FechaDevolucion = DateTime.Today.AddDays(7),
                 });
 
             });
