@@ -46,7 +46,17 @@ namespace TrabajoPractico1
                         break;
                     default:
                         Console.Clear();
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
                         Console.WriteLine("Ha ingresado una opcion invalida, porfavor vuelva a elegir la opcion");
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
                         Console.WriteLine("Presione una tecla para continuar");
                         Console.ReadKey(true);
                         Console.Clear();

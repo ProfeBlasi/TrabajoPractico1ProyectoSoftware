@@ -67,36 +67,42 @@ namespace TrabajoPractico1
         }
         public void registrarCliente()
         {
-            Console.WriteLine("Ingrese el nombre del cliente ");
-            string nombre = Console.ReadLine();
-            Console.WriteLine("Ingrese apellido del cliente ");
-            string apellido = Console.ReadLine();
-            Console.WriteLine("Ingrese el dni del cliente");
-            string dni = Console.ReadLine();
-            Console.WriteLine("Ingrese el mail del correcto");
-            string email = Console.ReadLine();
-            int dniNumero = int.Parse(dni);
-            if (ExisteCliente(dniNumero) == false)
+            try
             {
-                using (Contexto contexto = new Contexto())
+                Console.WriteLine("Ingrese el nombre del cliente ");
+                string nombre = Console.ReadLine();
+                Console.WriteLine("Ingrese apellido del cliente ");
+                string apellido = Console.ReadLine();
+                Console.WriteLine("Ingrese el dni del cliente");
+                string dni = Console.ReadLine();
+                Console.WriteLine("Ingrese el mail del correcto");
+                string email = Console.ReadLine();
+                int dniNumero = int.Parse(dni);
+                if (ExisteCliente(dniNumero) == false)
                 {
-                    Cliente cliente = new Cliente();
+                    using (Contexto contexto = new Contexto())
                     {
-                        cliente.Nombre = nombre;
-                        cliente.Apellido = apellido;
-                        cliente.DNI = dniNumero;
-                        cliente.Email = email;
-                    };
-                    contexto.Cliente.Add(cliente);
-                    contexto.SaveChanges();
-                    Console.WriteLine("El cliente se registro exitosamente, presione una tecla para continuar");
+                        Cliente cliente = new Cliente();
+                        {
+                            cliente.Nombre = nombre;
+                            cliente.Apellido = apellido;
+                            cliente.DNI = dniNumero;
+                            cliente.Email = email;
+                        };
+                        contexto.Cliente.Add(cliente);
+                        contexto.SaveChanges();
+                        Console.WriteLine("El cliente se registro exitosamente, presione una tecla para continuar");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Ya existe un cliente registrado con ese dni");
                 }
             }
-            else
+            catch(FormatException e)
             {
-                Console.WriteLine("Ya existe un cliente registrado con ese dni");
+                Console.WriteLine("Se produjo un error inesperado " + e.Message);
             }
-
         }
     }
 }
