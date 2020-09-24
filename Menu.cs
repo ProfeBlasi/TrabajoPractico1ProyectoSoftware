@@ -6,53 +6,52 @@ namespace TrabajoPractico1
 {
     public class Menu
     {
+        CrudLibro crudLibro = CrudLibro.getInstance();
+        CrudCliente crudCliente = CrudCliente.getInstance();
+        CrudAlquileres crudAlquileres = CrudAlquileres.getInstance();
+        CrudEstadoDeAlquileres crudEstadoDeAlquileres = CrudEstadoDeAlquileres.getInstance();
+
         public void MenuEstrutura()
         {
-            MenuInicio();
-            int opcion=0;
-            while(opcion != 5)
-            { 
-                try
-                {
-                    opcion = int.Parse(Console.ReadLine());
-                    if (opcion > 5)
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Ha ingresado una opcion invalida");
-                        MenuEstrutura();
-                    }
 
-                }
-                catch (Exception)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Ha ingresado una opcion invalida, porfavor vuelva a elegir la opcion");
-                    MenuEstrutura();
-                }
+            string opcion = "";
+            do
+            {
+                MenuInicio();
+                opcion = Console.ReadLine();
                 switch (opcion)
                 {
-                    case 1:
+                    case "1":
                         Console.Clear();
                         MenuRegistrarCliente();
                         break;
-                    case 2:
+                    case "2":
                         Console.Clear();
                         MenuRegistrarLosAlquileres();
                         break;
-                    case 3:
+                    case "3":
                         Console.Clear();
                         MenuReservaConDetallesDelLibro();
                         break;
-                    case 4:
+                    case "4":
                         Console.Clear();
                         MenuListarLibrosConStock();
                         break;
+                    case "5":
+                        Console.Clear();
+                        MenuFin();
+                        Console.WriteLine("Presione una tecla para salir");
+                        Console.ReadKey(true);
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Ha ingresado una opcion invalida, porfavor vuelva a elegir la opcion");
+                        Console.WriteLine("Presione una tecla para continuar");
+                        Console.ReadKey(true);
+                        Console.Clear();
+                        break;
                 }
-                Console.Clear();
-                Console.WriteLine();
-                MenuInicio();
-            }
-            MenuFin();
+            } while (opcion != "5");
         }
         public void MenuInicio()
         {
@@ -80,7 +79,6 @@ namespace TrabajoPractico1
             Console.WriteLine("************************************************************************************");
             Console.WriteLine();
             Console.WriteLine();
-            CrudCliente crudCliente = CrudCliente.getInstance();
             crudCliente.registrarCliente();
             Console.WriteLine();
             Console.WriteLine("Pulse cualquier tecla para continuar");
@@ -95,7 +93,6 @@ namespace TrabajoPractico1
             Console.WriteLine("************************************************************************************");
             Console.WriteLine();
             Console.WriteLine();
-            CrudAlquileres crudAlquileres = CrudAlquileres.getInstance();
             crudAlquileres.registrarLosAlquileres();
             Console.WriteLine();
             Console.WriteLine("Pulse cualquier tecla para continuar");
@@ -110,7 +107,6 @@ namespace TrabajoPractico1
             Console.WriteLine("************************************************************************************");
             Console.WriteLine();
             Console.WriteLine();
-            CrudEstadoDeAlquileres crudEstadoDeAlquileres = CrudEstadoDeAlquileres.getInstance();
             crudEstadoDeAlquileres.mostrarReservaConDetalleDeLibro();
             Console.WriteLine();
             Console.WriteLine("Pulse cualquier tecla para continuar");
@@ -125,7 +121,6 @@ namespace TrabajoPractico1
             Console.WriteLine("************************************************************************************");
             Console.WriteLine();
             Console.WriteLine();
-            CrudLibro crudLibro = CrudLibro.getInstance();
             crudLibro.mostrarListaDeLibrosConStock();
             Console.WriteLine();
             Console.WriteLine("Pulse cualquier tecla para continuar");

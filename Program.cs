@@ -10,7 +10,6 @@ namespace TrabajoPractico1
         {
             Menu menu = new Menu();
             menu.MenuEstrutura();
-            Console.ReadKey(true);
         }
 
     }

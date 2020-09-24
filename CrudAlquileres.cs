@@ -227,10 +227,42 @@ namespace TrabajoPractico1
                 if (lista.Count != 0)
                 {
                     Alquileres reserva = lista[0];
-                    crudLibro.AumentoStock(isbn);
-                    contexto.Alquileres.Remove(reserva);
-                    contexto.SaveChanges();
-                    Console.WriteLine("El proceso se registro exitosamente, presione una tecla para continuar");
+                    Console.WriteLine("¿Si desea borrar la cancelacion presione 1, si quiere registrarla presione 2?");
+                    string procesoCancelar = Console.ReadLine();
+                    bool ver = false;
+                    if (procesoCancelar == "1")
+                        ver = true;
+                    if (procesoCancelar == "2")
+                        ver = true;
+                    while(ver==false)
+                    {
+                        Console.WriteLine("Ud ingreso un valor incorrecto, vuelva a intentarlo");
+                        Console.WriteLine("¿Si desea borrar la cancelacion presione 1, si quiere registrarla presione 2?");
+                        procesoCancelar = Console.ReadLine();
+                        if (procesoCancelar == "1")
+                            ver = true;
+                        if (procesoCancelar == "2")
+                            ver = true;
+                    }
+                    if(procesoCancelar == "1")
+                    {
+                        contexto.Alquileres.Remove(reserva);
+                        contexto.SaveChanges();
+                        crudLibro.AumentoStock(isbn);
+                        Console.WriteLine("El proceso se registro exitosamente, presione una tecla para continuar");
+                    }
+                    if (procesoCancelar == "2")
+                    {
+                        reserva.FechaReserva = null;
+                        reserva.FechaAlquiler = null;
+                        reserva.FechaDevolucion = DateTime.Today;
+                        reserva.Estado = 3;
+                        contexto.Alquileres.Update(reserva);
+                        contexto.SaveChanges();
+                        crudLibro.AumentoStock(isbn);
+                        Console.WriteLine("El proceso se registro exitosamente, presione una tecla para continuar");
+
+                    }
                 }
                 else
                 {
