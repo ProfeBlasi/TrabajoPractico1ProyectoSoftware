@@ -94,10 +94,10 @@ namespace TrabajoPractico1.Migrations
                 columns: new[] { "ClienteId", "Apellido", "DNI", "Email", "Nombre" },
                 values: new object[,]
                 {
-                    { 1234, "Perez", "1234", "jperez@gmail.com", "Juan" },
-                    { 2345, "Sosa", "2345", "jsosa@gmail.com", "Jose" },
-                    { 3456, "Ortiz", "3456", "gortiz@gmail.com", "Gabriel" },
-                    { 4567, "Fernandez", "4567", "jfernandez@gmail.com", "Javier" }
+                    { 1, "Perez", "1", "jperez@gmail.com", "Juan" },
+                    { 2, "Sosa", "2", "jsosa@gmail.com", "Jose" },
+                    { 3, "Ortiz", "3", "gortiz@gmail.com", "Gabriel" },
+                    { 4, "Fernandez", "4", "jfernandez@gmail.com", "Javier" }
                 });
 
             migrationBuilder.InsertData(
@@ -126,17 +126,17 @@ namespace TrabajoPractico1.Migrations
             migrationBuilder.InsertData(
                 table: "Alquileres",
                 columns: new[] { "ID", "Cliente", "Estado", "FechaAlquiler", "FechaDevolucion", "FechaReserva", "ISBN" },
-                values: new object[] { 1, 1234, 1, new DateTime(2020, 9, 23, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2020, 9, 30, 0, 0, 0, 0, DateTimeKind.Local), null, "123" });
+                values: new object[] { 1, 1, 1, new DateTime(2020, 9, 24, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2020, 10, 1, 0, 0, 0, 0, DateTimeKind.Local), null, "123" });
 
             migrationBuilder.InsertData(
                 table: "Alquileres",
                 columns: new[] { "ID", "Cliente", "Estado", "FechaAlquiler", "FechaDevolucion", "FechaReserva", "ISBN" },
-                values: new object[] { 2, 2345, 2, null, null, new DateTime(2020, 9, 23, 0, 0, 0, 0, DateTimeKind.Local), "234" });
+                values: new object[] { 2, 2, 2, null, null, new DateTime(2020, 9, 24, 0, 0, 0, 0, DateTimeKind.Local), "234" });
 
             migrationBuilder.InsertData(
                 table: "Alquileres",
                 columns: new[] { "ID", "Cliente", "Estado", "FechaAlquiler", "FechaDevolucion", "FechaReserva", "ISBN" },
-                values: new object[] { 3, 3456, 3, null, new DateTime(2020, 9, 23, 0, 0, 0, 0, DateTimeKind.Local), null, "345" });
+                values: new object[] { 3, 3, 3, null, null, null, "345" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Alquileres_Cliente",

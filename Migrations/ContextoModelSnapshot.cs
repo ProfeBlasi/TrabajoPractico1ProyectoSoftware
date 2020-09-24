@@ -59,26 +59,25 @@ namespace TrabajoPractico1.Migrations
                         new
                         {
                             ID = 1,
-                            Cliente = 1234,
+                            Cliente = 1,
                             Estado = 1,
-                            FechaAlquiler = new DateTime(2020, 9, 23, 0, 0, 0, 0, DateTimeKind.Local),
-                            FechaDevolucion = new DateTime(2020, 9, 30, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaAlquiler = new DateTime(2020, 9, 24, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaDevolucion = new DateTime(2020, 10, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             ISBN = "123"
                         },
                         new
                         {
                             ID = 2,
-                            Cliente = 2345,
+                            Cliente = 2,
                             Estado = 2,
-                            FechaReserva = new DateTime(2020, 9, 23, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaReserva = new DateTime(2020, 9, 24, 0, 0, 0, 0, DateTimeKind.Local),
                             ISBN = "234"
                         },
                         new
                         {
                             ID = 3,
-                            Cliente = 3456,
+                            Cliente = 3,
                             Estado = 3,
-                            FechaDevolucion = new DateTime(2020, 9, 23, 0, 0, 0, 0, DateTimeKind.Local),
                             ISBN = "345"
                         });
                 });
@@ -110,33 +109,33 @@ namespace TrabajoPractico1.Migrations
                     b.HasData(
                         new
                         {
-                            ClienteId = 1234,
+                            ClienteId = 1,
                             Apellido = "Perez",
-                            DNI = "1234",
+                            DNI = "1",
                             Email = "jperez@gmail.com",
                             Nombre = "Juan"
                         },
                         new
                         {
-                            ClienteId = 2345,
+                            ClienteId = 2,
                             Apellido = "Sosa",
-                            DNI = "2345",
+                            DNI = "2",
                             Email = "jsosa@gmail.com",
                             Nombre = "Jose"
                         },
                         new
                         {
-                            ClienteId = 3456,
+                            ClienteId = 3,
                             Apellido = "Ortiz",
-                            DNI = "3456",
+                            DNI = "3",
                             Email = "gortiz@gmail.com",
                             Nombre = "Gabriel"
                         },
                         new
                         {
-                            ClienteId = 4567,
+                            ClienteId = 4,
                             Apellido = "Fernandez",
-                            DNI = "4567",
+                            DNI = "4",
                             Email = "jfernandez@gmail.com",
                             Nombre = "Javier"
                         });

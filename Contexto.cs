@@ -27,32 +27,32 @@ namespace TrabajoPractico1
             {
                 entity.HasData(new Cliente
                 {
-                    ClienteId = 1234,
-                    DNI = 1234,
+                    ClienteId = 1,
+                    DNI = 1,
                     Nombre = "Juan",
                     Apellido = "Perez",
                     Email = "jperez@gmail.com",
                 });
                 entity.HasData(new Cliente
                 {
-                    ClienteId = 2345,
-                    DNI = 2345,
+                    ClienteId = 2,
+                    DNI = 2,
                     Nombre = "Jose",
                     Apellido = "Sosa",
                     Email = "jsosa@gmail.com",
                 });
                 entity.HasData(new Cliente
                 {
-                    ClienteId = 3456,
-                    DNI = 3456,
+                    ClienteId = 3,
+                    DNI = 3,
                     Nombre = "Gabriel",
                     Apellido = "Ortiz",
                     Email = "gortiz@gmail.com",
                 });
                 entity.HasData(new Cliente
                 {
-                    ClienteId = 4567,
-                    DNI = 4567,
+                    ClienteId = 4,
+                    DNI = 4,
                     Nombre = "Javier",
                     Apellido = "Fernandez",
                     Email = "jfernandez@gmail.com",
@@ -149,7 +149,7 @@ namespace TrabajoPractico1
                 entity.HasData(new Alquileres
                 {
                     ID = 1,
-                    Cliente = 1234,
+                    Cliente = 1,
                     ISBN = "123",
                     Estado = 1,
                     FechaAlquiler = DateTime.Today,
@@ -159,7 +159,7 @@ namespace TrabajoPractico1
                 entity.HasData(new Alquileres
                 {
                     ID = 2,
-                    Cliente = 2345,
+                    Cliente = 2,
                     ISBN = "234",
                     Estado = 2,
                     FechaAlquiler = null,
@@ -169,12 +169,12 @@ namespace TrabajoPractico1
                 entity.HasData(new Alquileres
                 {
                     ID = 3,
-                    Cliente = 3456,
+                    Cliente = 3,
                     ISBN = "345",
-                    Estado = 1,
-                    FechaAlquiler = DateTime.Today,
+                    Estado = 3,
+                    FechaAlquiler = null,
                     FechaReserva = null,
-                    FechaDevolucion = DateTime.Today.AddDays(7),
+                    FechaDevolucion = null,
                 });
 
             });

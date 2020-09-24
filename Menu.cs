@@ -108,7 +108,8 @@ namespace TrabajoPractico1
             Console.WriteLine("************************************************************************************");
             Console.WriteLine();
             Console.WriteLine();
-            crudEstadoDeAlquileres.mostrarReservaConDetalleDeLibro();
+            List<Alquileres> lista = crudEstadoDeAlquileres.listaDeAlquileresReservado();
+            crudEstadoDeAlquileres.mostrarReservaConDetalleDeLibro(lista);
             Console.WriteLine();
             Console.WriteLine("Pulse cualquier tecla para continuar");
             Console.ReadKey(true);

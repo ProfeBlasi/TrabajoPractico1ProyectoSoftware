@@ -19,7 +19,7 @@ namespace TrabajoPractico1
             }
             return instance;
         }
-        private List<Alquileres> listaDeAlquileresReservado()
+        public List<Alquileres> listaDeAlquileresReservado()
         {
             using (Contexto contexto = new Contexto())
             {
@@ -27,23 +27,30 @@ namespace TrabajoPractico1
                 return lista;
             }
         }
-        public void mostrarReservaConDetalleDeLibro()
+        public List<Alquileres> listaDeAlquileresReservadoEspecifico(string isbn)
         {
-            List<Alquileres> lista = new List<Alquileres>();
+            using (Contexto contexto = new Contexto())
+            {
+                List<Alquileres> lista = (from x in contexto.Alquileres where x.Libro.ISBN == isbn && x.EstadoId.EstadoId == 2 select x).ToList();
+                return lista;
+            }
+        }
+        public void mostrarReservaConDetalleDeLibro(List<Alquileres> lista)
+        {
             CrudCliente crudCliente = CrudCliente.getInstance();
             CrudLibro crudLibro = CrudLibro.getInstance();
-            lista = listaDeAlquileresReservado();
             if (lista.Count != 0)
             {
                 foreach (Alquileres x in lista)
                 {
+                    int id = x.ID;
                     int clientId = x.Cliente;
                     string nombre = crudCliente.getNombreApellido(clientId);
                     string ISBN = x.ISBN;
                     string titulo = crudLibro.getTituloLibro(ISBN);
                     DateTime fecha = Convert.ToDateTime(x.FechaReserva);
-                    Console.WriteLine("El cliennte " + nombre + " tiene reservado el libro " + titulo);
-                    Console.WriteLine("ISBN " + ISBN + ", fecha " + fecha.ToString("dd-MM-yyyy") );
+                    Console.WriteLine("El sr/a " + nombre + " tiene reservado el libro " + titulo);
+                    Console.WriteLine("ISBN " + ISBN + ",para la fecha " + fecha.ToString("dd-MM-yyyy"));
                 }
             }
             else
