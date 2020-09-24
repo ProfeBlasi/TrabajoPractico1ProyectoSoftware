@@ -17,6 +17,7 @@ namespace TrabajoPractico1
             string opcion = "";
             do
             {
+                Console.Clear();
                 MenuInicio();
                 opcion = Console.ReadLine();
                 switch (opcion)

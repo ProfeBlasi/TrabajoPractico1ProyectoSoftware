@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System.Linq;
+using Microsoft.VisualBasic;
+using System.Globalization;
 
 namespace TrabajoPractico1
 {
@@ -39,7 +41,9 @@ namespace TrabajoPractico1
                     string nombre = crudCliente.getNombreApellido(clientId);
                     string ISBN = x.ISBN;
                     string titulo = crudLibro.getTituloLibro(ISBN);
-                    Console.WriteLine(nombre + " tiene reservado el libro " + titulo);
+                    DateTime fecha = Convert.ToDateTime(x.FechaReserva);
+                    Console.WriteLine("El cliennte " + nombre + " tiene reservado el libro " + titulo);
+                    Console.WriteLine("ISBN " + ISBN + ", fecha " + fecha.ToString("dd-MM-yyyy") );
                 }
             }
             else
