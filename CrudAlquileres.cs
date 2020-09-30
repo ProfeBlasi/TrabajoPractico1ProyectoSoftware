@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+//using System.Text;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Diagnostics.CodeAnalysis;
+//using System.Security.Cryptography.X509Certificates;
+//using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
-using System.Runtime.Serialization;
-
+//using System.Runtime.Serialization;
 namespace TrabajoPractico1
 {
     public class CrudAlquileres
@@ -24,7 +23,7 @@ namespace TrabajoPractico1
             }
             return instance;
         }
-        public void registrarLosAlquileres()
+        public void CominezoRegistroDeLosAlquileres()
         {
             try
             {
@@ -33,27 +32,22 @@ namespace TrabajoPractico1
                 Console.WriteLine("Ingrese el isbn del libro");
                 string isbn = Console.ReadLine();
                 int dni = int.Parse(dniString);
-                if (VerificoCliente(dni))
-                    if (VerificoLibro(isbn))
+                if (VerificoCliente(dni) && VerificoLibro(isbn))
+                {
+                    int estadoId = EstadoId();
+                    switch (estadoId)
                     {
-                        //Si el cliente existe y el libro esta registrado en la db le consultamos cual
-                        //es el proceso que desea realizar
-                        int estadoId = EstadoId();
-                        switch (estadoId)
-                        {
-                            case 1:
-                                //En esta funcion se puede alquilar con reserva previa o sin reserva
-                                TipoDeAlquiler(dni, isbn, estadoId);
-                                break;
-                            case 2:
-                                Reservar(dni, isbn, estadoId);
-                                break;
-                            case 3:
-                                //Con esta opcion se puede concelar una reserva o un alquiler
-                                Cancelar(dni, isbn);
-                                break;
-                        }
+                        case 1:
+                            TipoDeAlquiler(dni, isbn, estadoId);
+                            break;
+                        case 2:
+                            Reservar(dni, isbn, estadoId);
+                            break;
+                        case 3:
+                            Cancelar(dni, isbn);
+                            break;
                     }
+                }
             }
             catch (FormatException e)
             {
@@ -61,7 +55,6 @@ namespace TrabajoPractico1
             }
 
         }
-        //ESte metodo devuelve si o si la opcion 1, 2 0 3 referidas a un alquiler, una reserva o una cancelacion
         private int EstadoId()
         {
             try
@@ -94,11 +87,9 @@ namespace TrabajoPractico1
             catch (FormatException e)
             {
                 Console.WriteLine("Se produjo un error inesperado " + e.Message);
-                //En este caso no va a entrar ninguna opcion del codigo
                 return 0;
             }
         }
-        //Filtramos si es un alquiler con reserva previa o no
         private void TipoDeAlquiler(int dni, string isbn, int estadoId)
         {
             Console.WriteLine("¿El alquiler es con reserva anticipada?, presione la opcion correcta");
@@ -134,7 +125,6 @@ namespace TrabajoPractico1
                 }
             }
         }
-        //Similar al metodo existe cliente pero deja una leyenda al final
         private bool VerificoCliente(int dni)
         {
             bool existe = crudCliente.ExisteCliente(dni);
@@ -227,16 +217,12 @@ namespace TrabajoPractico1
         private void Reservar(int dni, string isbn, int estadoId)
         {
             DateTime? fechaVacia = null;
-            //Si hay stock
             if (crudLibro.ExisteStock(isbn))
             {
                 DateTime fecha = Convert.ToDateTime(fechaVacia);
                 fecha = DateTime.Today;
                 ProcesoDeReserva(dni, isbn, estadoId, fecha);
             }
-            
-
-            //Si no hay stock
             else
             {
                 using (Contexto contexto = new Contexto())
@@ -244,7 +230,6 @@ namespace TrabajoPractico1
                     List<Alquileres> lista = (from x in contexto.Alquileres where x.ISBN == isbn && x.Estado == 1 select x).ToList();
                     if (lista.Count != 0)
                     {
-                        //Lista ordenada en forma ascendente
                         var list = lista.OrderBy(x => x.FechaDevolucion).ToList();
                         DateTime fecha = Convert.ToDateTime(list[0].FechaDevolucion);
                         Console.WriteLine("En este momento no contamos con stock, sin embargo puede reservar para la fecha");
@@ -300,7 +285,6 @@ namespace TrabajoPractico1
             }
 
         }
-        //Podria sacar el id
         private void Cancelar(int dni, string isbn)
         {
             using (Contexto contexto = new Contexto())

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
+//using System.Collections.Generic;
+//using System.Text;
 
 namespace TrabajoPractico1
 {
@@ -9,8 +9,7 @@ namespace TrabajoPractico1
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //Se debe camabiar el connection string para migrar la base de datos
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-IKK8QNO;Database=Bibli;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=RYZEN5;Database=Biblioteca;Trusted_Connection=True;");
         }
         private DbSet<Alquileres> alquileres;
         private DbSet<Cliente> cliente;
@@ -22,7 +21,6 @@ namespace TrabajoPractico1
         public DbSet<Libros> Libros { get => libros; set => libros = value; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Registro de Clientes
             modelBuilder.Entity<Cliente>(entity =>
             {
                 entity.HasData(new Cliente
@@ -58,8 +56,6 @@ namespace TrabajoPractico1
                     Email = "jfernandez@gmail.com",
                 });
             });
-
-            //Registro de Estado de alquileres
             modelBuilder.Entity<EstadoDeAlquileres>(entity =>
             {
                 entity.HasData(new EstadoDeAlquileres
@@ -78,8 +74,6 @@ namespace TrabajoPractico1
                     Descripcion = "Cancelado",
                 });
             });
-
-            //Registro de Libros
             modelBuilder.Entity<Libros>(entity =>
             {
                 entity.HasData(new Libros
@@ -143,7 +137,6 @@ namespace TrabajoPractico1
                     Imagen = "vacio"
                 });
             });
-            //Registro de Alquileres
             modelBuilder.Entity<Alquileres>(entity =>
             {
                 entity.HasData(new Alquileres

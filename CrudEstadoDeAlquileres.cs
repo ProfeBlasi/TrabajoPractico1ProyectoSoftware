@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+//using System.Text;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System.Linq;
-using Microsoft.VisualBasic;
-using System.Globalization;
-
+//using Microsoft.VisualBasic;
+//using System.Globalization;
 namespace TrabajoPractico1
 {
     public class CrudEstadoDeAlquileres

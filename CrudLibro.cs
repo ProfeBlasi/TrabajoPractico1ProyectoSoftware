@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+//using System.Text;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System.Linq;
-
 namespace TrabajoPractico1
 {
     public class CrudLibro

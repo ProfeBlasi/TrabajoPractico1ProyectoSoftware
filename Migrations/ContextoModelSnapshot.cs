@@ -3,9 +3,8 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TrabajoPractico1;
-
+//using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+//using TrabajoPractico1;
 namespace TrabajoPractico1.Migrations
 {
     [DbContext(typeof(Contexto))]
@@ -18,43 +17,30 @@ namespace TrabajoPractico1.Migrations
                 .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
             modelBuilder.Entity("TrabajoPractico1.Alquileres", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("Cliente")
                         .HasColumnType("int");
-
                     b.Property<int>("Estado")
                         .HasColumnType("int");
-
                     b.Property<DateTime?>("FechaAlquiler")
                         .HasColumnType("Date");
-
                     b.Property<DateTime?>("FechaDevolucion")
                         .HasColumnType("Date");
-
                     b.Property<DateTime?>("FechaReserva")
                         .HasColumnType("Date");
-
                     b.Property<string>("ISBN")
                         .IsRequired()
                         .HasColumnType("varchar(45)");
-
                     b.HasKey("ID");
-
                     b.HasIndex("Cliente");
-
                     b.HasIndex("Estado");
-
                     b.HasIndex("ISBN");
-
                     b.ToTable("Alquileres");
-
                     b.HasData(
                         new
                         {
@@ -81,31 +67,23 @@ namespace TrabajoPractico1.Migrations
                             ISBN = "345"
                         });
                 });
-
             modelBuilder.Entity("TrabajoPractico1.Cliente", b =>
                 {
                     b.Property<int>("ClienteId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<string>("Apellido")
                         .HasColumnType("varchar(45)");
-
                     b.Property<string>("DNI")
                         .IsRequired()
                         .HasColumnType("varchar(10)");
-
                     b.Property<string>("Email")
                         .HasColumnType("varchar(45)");
-
                     b.Property<string>("Nombre")
                         .HasColumnType("varchar(45)");
-
                     b.HasKey("ClienteId");
-
                     b.ToTable("Cliente");
-
                     b.HasData(
                         new
                         {
@@ -140,21 +118,16 @@ namespace TrabajoPractico1.Migrations
                             Nombre = "Javier"
                         });
                 });
-
             modelBuilder.Entity("TrabajoPractico1.EstadoDeAlquileres", b =>
                 {
                     b.Property<int>("EstadoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<string>("Descripcion")
                         .HasColumnType("varchar(45)");
-
                     b.HasKey("EstadoId");
-
                     b.ToTable("EstadoDeAlquileres");
-
                     b.HasData(
                         new
                         {
@@ -172,34 +145,24 @@ namespace TrabajoPractico1.Migrations
                             Descripcion = "Cancelado"
                         });
                 });
-
             modelBuilder.Entity("TrabajoPractico1.Libros", b =>
                 {
                     b.Property<string>("ISBN")
                         .HasColumnType("varchar(45)");
-
                     b.Property<string>("Autor")
                         .HasColumnType("varchar(45)");
-
                     b.Property<string>("Edicion")
                         .HasColumnType("varchar(45)");
-
                     b.Property<string>("Editorial")
                         .HasColumnType("varchar(45)");
-
                     b.Property<string>("Imagen")
                         .HasColumnType("varchar(45)");
-
                     b.Property<int>("Stock")
                         .HasColumnType("int");
-
                     b.Property<string>("Titulo")
                         .HasColumnType("varchar(45)");
-
                     b.HasKey("ISBN");
-
                     b.ToTable("Libros");
-
                     b.HasData(
                         new
                         {
@@ -262,7 +225,6 @@ namespace TrabajoPractico1.Migrations
                             Titulo = "Las aventuras de Huckleberry Finn"
                         });
                 });
-
             modelBuilder.Entity("TrabajoPractico1.Alquileres", b =>
                 {
                     b.HasOne("TrabajoPractico1.Cliente", "cliente")
@@ -270,7 +232,6 @@ namespace TrabajoPractico1.Migrations
                         .HasForeignKey("Cliente")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
                     b.HasOne("TrabajoPractico1.EstadoDeAlquileres", "EstadoId")
                         .WithMany()
                         .HasForeignKey("Estado")

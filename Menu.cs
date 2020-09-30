@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-
+//using System.Text;
 namespace TrabajoPractico1
 {
     public class Menu
@@ -10,10 +9,8 @@ namespace TrabajoPractico1
         CrudCliente crudCliente = CrudCliente.getInstance();
         CrudAlquileres crudAlquileres = CrudAlquileres.getInstance();
         CrudEstadoDeAlquileres crudEstadoDeAlquileres = CrudEstadoDeAlquileres.getInstance();
-
         public void MenuEstrutura()
         {
-
             string opcion = "";
             do
             {
@@ -104,7 +101,7 @@ namespace TrabajoPractico1
             Console.WriteLine("************************************************************************************");
             Console.WriteLine();
             Console.WriteLine();
-            crudAlquileres.registrarLosAlquileres();
+            crudAlquileres.CominezoRegistroDeLosAlquileres();
             Console.WriteLine();
             Console.WriteLine("Pulse cualquier tecla para continuar");
             Console.ReadKey(true);

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+//using System.Text;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System.Linq;
-
 namespace TrabajoPractico1
 {
     public class CrudCliente
@@ -17,7 +16,6 @@ namespace TrabajoPractico1
             }
             return instance;
         }
-        //Metodo para verificar que no hay dos clientes con el mismo dni
         public bool ExisteCliente(int dni)
         {
             using (Contexto contexto = new Contexto())
@@ -33,7 +31,6 @@ namespace TrabajoPractico1
                 }
             }
         }
-        //Devuelve el ID del cliente, lo necesitaba en la clase crudAlquileres
         public int getClienteId(int dni)
         {
             using (Contexto contexto = new Contexto())
