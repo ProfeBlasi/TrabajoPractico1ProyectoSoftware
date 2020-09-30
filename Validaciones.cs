@@ -26,12 +26,11 @@ namespace TrabajoPractico1
                 string nuevoNumero = Console.ReadLine();
                 num = VerificoNumero(nuevoNumero);
             }
-            Console.WriteLine("Ya hay un numero positivo es " + num);
             return num;
         }
         public int VerificoNumero(string numero)
         {
-            int num = -987654321;
+            int num = -1;
             try
             {
                 num = int.Parse(numero);
