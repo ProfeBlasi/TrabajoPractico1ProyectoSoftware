@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-//using System.Text;
 namespace TrabajoPractico1
 {
     public class Menu
     {
-        CrudLibro crudLibro = CrudLibro.getInstance();
-        CrudCliente crudCliente = CrudCliente.getInstance();
-        CrudAlquileres crudAlquileres = CrudAlquileres.getInstance();
-        CrudEstadoDeAlquileres crudEstadoDeAlquileres = CrudEstadoDeAlquileres.getInstance();
         public void MenuEstrutura()
         {
             string opcion = "";
@@ -87,6 +81,7 @@ namespace TrabajoPractico1
             Console.WriteLine("************************************************************************************");
             Console.WriteLine();
             Console.WriteLine();
+            CrudCliente crudCliente = CrudCliente.getInstance();
             crudCliente.registrarCliente();
             Console.WriteLine();
             Console.WriteLine("Pulse cualquier tecla para continuar");
@@ -101,7 +96,8 @@ namespace TrabajoPractico1
             Console.WriteLine("************************************************************************************");
             Console.WriteLine();
             Console.WriteLine();
-            crudAlquileres.CominezoRegistro();
+            CrudAlquileres crudAlquileres = CrudAlquileres.getInstance();
+            crudAlquileres.ComienzoRegistro();
             Console.WriteLine();
             Console.WriteLine("Pulse cualquier tecla para continuar");
             Console.ReadKey(true);
@@ -115,6 +111,7 @@ namespace TrabajoPractico1
             Console.WriteLine("************************************************************************************");
             Console.WriteLine();
             Console.WriteLine();
+            CrudEstadoDeAlquileres crudEstadoDeAlquileres = CrudEstadoDeAlquileres.getInstance();
             crudEstadoDeAlquileres.ListaDeReservas();
             Console.WriteLine();
             Console.WriteLine("Pulse cualquier tecla para continuar");
@@ -129,6 +126,7 @@ namespace TrabajoPractico1
             Console.WriteLine("************************************************************************************");
             Console.WriteLine();
             Console.WriteLine();
+            CrudLibro crudLibro = CrudLibro.getInstance();
             crudLibro.ListaDeLibrosConStock();
             Console.WriteLine();
             Console.WriteLine("Pulse cualquier tecla para continuar");

@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-//using System.Collections.Generic;
-//using System.Text;
-
 namespace TrabajoPractico1
 {
     public class Contexto : DbContext
@@ -12,7 +9,6 @@ namespace TrabajoPractico1
         {
             optionsBuilder.UseSqlServer(@"Server=RYZEN5;Database=Biblioteca;Trusted_Connection=True;");
         }
-
         public static Contexto getInstance()
         {
             if (instance == null)
