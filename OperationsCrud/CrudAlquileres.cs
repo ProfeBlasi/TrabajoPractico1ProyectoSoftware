@@ -10,7 +10,6 @@ namespace TrabajoPractico1
         static CrudAlquileres instance = null;
         CrudCliente crudCliente = CrudCliente.getInstance();
         CrudLibro crudLibro = CrudLibro.getInstance();
-        CrudEstadoDeAlquileres crudEstadoDeAlquileres = CrudEstadoDeAlquileres.getInstance();
         Contexto contexto = Contexto.getInstance();
         public static CrudAlquileres getInstance()
         {
@@ -22,14 +21,14 @@ namespace TrabajoPractico1
         }
         public void CominezoRegistro()
         {
-            try
+            Console.WriteLine("Ingrese el dni del cliente");
+            string dniString = Validaciones.SoloNumeros(Console.ReadLine());
+            int dni = Validaciones.ConvertirNumero(dniString);
+            if(crudCliente.ExisteCliente(dni))
             {
-                Console.WriteLine("Ingrese el dni del cliente");
-                string dniString = Validaciones.SoloLetras(Console.ReadLine());
                 Console.WriteLine("Ingrese el isbn del libro");
-                string isbn = Validaciones.SoloLetras(Console.ReadLine());
-                int dni = Validaciones.ConvertirNumero(dniString);
-                if (VerificoCliente(dni) && VerificoLibro(isbn))
+                string isbn = Validaciones.SoloNumeros(Console.ReadLine());
+                if (crudLibro.ExisteISBN(isbn))
                 {
                     int estadoId = EstadoId();
                     switch (estadoId)
@@ -45,61 +44,54 @@ namespace TrabajoPractico1
                             break;
                     }
                 }
+                else
+                    Console.WriteLine("El libro no se encuentra registrado");
             }
-            catch
-            {
-                Console.WriteLine("Se produjo un error inesperado ");
-            }
-
+            else
+                Console.WriteLine("El cliente no se encuentra registrado");
         }
         private int EstadoId()
         {
-            try
+            Console.WriteLine("Ingrese la opcion deseada");
+            Console.WriteLine("1 Si va a registrar un alquiler ** " + "2 Si va a registrar una reserva ** " + "3 Si se va a cancelar un alquiler o una reserva");
+            string estado = Validaciones.SoloNumeros(Console.ReadLine());
+            bool estadoCorrecto = true;
+            do
             {
-                Console.WriteLine("Ingrese la opcion deseada");
-                Console.WriteLine("1 Si va a registrar un alquiler ** " + "2 Si va a registrar una reserva ** " + "3 Si se va a cancelar un alquiler o una reserva");
-                string estado = Validaciones.SoloLetras(Console.ReadLine());
-                bool estadoCorrecto = true;
-                do
+                switch (estado)
                 {
-                    switch (estado)
-                    {
-                        case "1":
-                            break;
-                        case "2":
-                            break;
-                        case "3":
-                            break;
-                        default:
-                            Console.WriteLine("Se ingreso una opcion incorrecta, vuelva a intentarlo");
-                            break;
-                    }
-                    if (estado == "1" || estado == "2" || estado == "3")
-                        estadoCorrecto = false;
-                } while (estadoCorrecto);
-                int estadoId = Validaciones.ConvertirNumero(estado);
-                return estadoId;
-            }
-            catch
-            {
-                Console.WriteLine("Se produjo un error inesperado ");
-                return 0;
-            }
+                    case "1":
+                        break;
+                    case "2":
+                        break;
+                    case "3":
+                        break;
+                    default:
+                        Console.WriteLine("Se ingreso una opcion incorrecta, vuelva a intentarlo");
+                        break;
+                }
+                if (estado == "1" || estado == "2" || estado == "3")
+                    estadoCorrecto = false;
+            } while (estadoCorrecto);
+            int estadoId = Validaciones.ConvertirNumero(estado);
+            return estadoId;
         }
         private void Alquiler(int dni, string isbn, int estadoId)
         {
-            List<Alquileres> alquileres = (from x in contexto.Alquileres where x.Cliente == crudCliente.getId(dni) && x.ISBN == isbn && x.Estado == 2 select x).ToList();
-            if (alquileres.Any())
+            if (crudLibro.ExisteStock(isbn))
             {
-
+                Alquileres alquiler = proceso(dni, isbn, estadoId, DateTime.Now, null, DateTime.Now.AddDays(7), true);
+                contexto.Alquileres.Add(alquiler);
+                contexto.SaveChanges();
+                Console.WriteLine(crudCliente.getNombre(dni) + " alquilo " + crudLibro.getTitulo(isbn) + " hasta el dia " + DateTime.Now.AddDays(7).ToString("dd/MM/yyyy"));
             }
             else
             {
-
+                Console.WriteLine("En este momento no contamos con stock para realizar el alquiler");
             }
         }
         
-        private Alquileres proceso(int dni, string isbn, int estadoId, DateTime fechaAlquiler, DateTime fechaReserva, DateTime fechaDevolucion, bool descuento)
+        private Alquileres proceso(int dni, string isbn, int estadoId, DateTime? fechaAlquiler, DateTime? fechaReserva, DateTime? fechaDevolucion, bool descuento)
         {
             Alquileres alqui = new Alquileres();
             {
@@ -266,36 +258,6 @@ namespace TrabajoPractico1
                 //string titulo = crudLibro.getTituloLibro(isbn);
                 //Console.WriteLine("El libro " + titulo + " fue reservado al sr/a " + nombre + ", y quitado del stock para que lo pueda alquilar");
                 Console.WriteLine("De lo contrario el administrador puede cancelar la reserva considerando un tiempo limitado de espera");
-            }
-        }
-        private bool VerificoCliente(int dni)
-        {
-            if (crudCliente.ExisteCliente(dni))
-                return true;
-            else
-            {
-                Console.WriteLine("El cliente no se encuentra registrado en el sistema");
-                return false;
-            }
-        }
-        private bool VerificoLibro(string isbn)
-        {
-            if (crudLibro.ExisteISBN(isbn))
-                return true;
-            else
-            {
-                Console.WriteLine("El ISBN del libro no se encuentra registrado en el sistema");
-                return false;
-            }
-        }
-        private bool VerificoStock(string isbn)
-        {
-            if (crudLibro.ExisteStock(isbn))
-                return true;
-            else
-            {
-                Console.WriteLine("En este momento no contamos con stock");
-                return false;
             }
         }
     }

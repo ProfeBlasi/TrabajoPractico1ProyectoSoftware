@@ -17,29 +17,28 @@ namespace TrabajoPractico1
             }
             return array;
         }
+        public static String SoloNumeros(string array)
+        {
+            while (!Regex.IsMatch(array, @"^[0-9]+$"))
+            {
+                Console.Write("Error, ingrese solo numeros por favor:");
+                array = Console.ReadLine();
+            }
+            return array;
+        }
         public static int ConvertirNumero(string numero)
         {
-            int num = VerificoNumero(numero);
-            while(num<0)
-            {
-                Console.WriteLine("El numero valor ingresado no corresponde intentelo nuevamente");
-                string nuevoNumero = Console.ReadLine();
-                num = VerificoNumero(nuevoNumero);
-            }
-            return num;
-        }
-        public static int VerificoNumero(string numero)
-        {
-            int num = -1;
+            int num =0;
             try
             {
                 num = int.Parse(numero);
             }
-            catch
+            catch(Exception e)
             {
-
+                Console.WriteLine(e.Message);
             }
             return num;
         }
+        
     }
 }

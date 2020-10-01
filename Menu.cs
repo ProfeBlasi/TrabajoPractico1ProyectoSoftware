@@ -101,7 +101,7 @@ namespace TrabajoPractico1
             Console.WriteLine("************************************************************************************");
             Console.WriteLine();
             Console.WriteLine();
-            //crudAlquileres.CominezoRegistroDeLosAlquileres();
+            crudAlquileres.CominezoRegistro();
             Console.WriteLine();
             Console.WriteLine("Pulse cualquier tecla para continuar");
             Console.ReadKey(true);
