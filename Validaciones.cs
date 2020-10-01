@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.RegularExpressions;
-//using System.Collections.Generic;
-//using System.Text;
-
 namespace TrabajoPractico1
 {
     public class Validaciones
