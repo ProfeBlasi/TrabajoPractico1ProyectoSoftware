@@ -38,7 +38,6 @@ namespace TrabajoPractico1
                 Console.WriteLine(e.Message);
             }
             return num;
-        }
-        
+        } 
     }
 }
