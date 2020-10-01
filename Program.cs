@@ -7,11 +7,10 @@ namespace TrabajoPractico1
     {
         static void Main(string[] args)
         {
-            //Menu menu = new Menu();
-            //menu.MenuEstrutura();
+            Menu menu = new Menu();
+            menu.MenuEstrutura();
             Validaciones val = new Validaciones();
-            string palabra = Console.ReadLine();
-            val.ConvertirNumero(palabra);
+            CrudLibro crudLibro = CrudLibro.getInstance();
             Console.WriteLine("Salio bien");
             Console.ReadKey(true);
         }

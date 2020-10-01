@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Text;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System.Linq;
-//using System.Security.Cryptography.X509Certificates;
-//using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
-//using System.Runtime.Serialization;
 namespace TrabajoPractico1
 {
     public class CrudAlquileres
@@ -15,6 +11,7 @@ namespace TrabajoPractico1
         CrudCliente crudCliente = CrudCliente.getInstance();
         CrudLibro crudLibro = CrudLibro.getInstance();
         CrudEstadoDeAlquileres crudEstadoDeAlquileres = CrudEstadoDeAlquileres.getInstance();
+        Contexto contexto = Contexto.getInstance();
         public static CrudAlquileres getInstance()
         {
             if (instance == null)
@@ -23,35 +20,35 @@ namespace TrabajoPractico1
             }
             return instance;
         }
-        public void CominezoRegistroDeLosAlquileres()
+        public void CominezoRegistro()
         {
             try
             {
                 Console.WriteLine("Ingrese el dni del cliente");
-                string dniString = Console.ReadLine();
+                string dniString = Validaciones.SoloLetras(Console.ReadLine());
                 Console.WriteLine("Ingrese el isbn del libro");
-                string isbn = Console.ReadLine();
-                int dni = int.Parse(dniString);
+                string isbn = Validaciones.SoloLetras(Console.ReadLine());
+                int dni = Validaciones.ConvertirNumero(dniString);
                 if (VerificoCliente(dni) && VerificoLibro(isbn))
                 {
                     int estadoId = EstadoId();
                     switch (estadoId)
                     {
                         case 1:
-                            TipoDeAlquiler(dni, isbn, estadoId);
+                            Alquiler(dni, isbn, estadoId);
                             break;
                         case 2:
                             Reservar(dni, isbn, estadoId);
                             break;
                         case 3:
-                            Cancelar(dni, isbn);
+                            Cancelar(dni, isbn, estadoId);
                             break;
                     }
                 }
             }
-            catch (FormatException e)
+            catch
             {
-                Console.WriteLine("Se produjo un error inesperado " + e.Message);
+                Console.WriteLine("Se produjo un error inesperado ");
             }
 
         }
@@ -60,138 +57,71 @@ namespace TrabajoPractico1
             try
             {
                 Console.WriteLine("Ingrese la opcion deseada");
-                Console.WriteLine("1 ** Si va a registrar un alquiler");
-                Console.WriteLine("2 ** Si va a registrar una reserva");
-                Console.WriteLine("3 ** Si se va a cancelar un alquiler o una reserva");
-                string estado = Console.ReadLine();
-                bool ver = false;
-                if (estado == "1" || estado == "2" || estado == "3")
+                Console.WriteLine("1 Si va a registrar un alquiler ** " + "2 Si va a registrar una reserva ** " + "3 Si se va a cancelar un alquiler o una reserva");
+                string estado = Validaciones.SoloLetras(Console.ReadLine());
+                bool estadoCorrecto = true;
+                do
                 {
-                    ver = true;
-                }
-                while (ver == false)
-                {
-                    Console.WriteLine("Se detecto que ingreso un valor de estado incorrecto, intentelo nuevamente");
-                    Console.WriteLine("1 ** Si va a registrar un alquiler");
-                    Console.WriteLine("2 ** Si va a registrar una reserva");
-                    Console.WriteLine("3 ** Si se va a cancelar un alquiler o una reserva");
-                    estado = Console.ReadLine();
-                    if (estado == "1" || estado == "2" || estado == "3")
+                    switch (estado)
                     {
-                        ver = true;
+                        case "1":
+                            break;
+                        case "2":
+                            break;
+                        case "3":
+                            break;
+                        default:
+                            Console.WriteLine("Se ingreso una opcion incorrecta, vuelva a intentarlo");
+                            break;
                     }
-                }
-                int estadoId = int.Parse(estado);
+                    if (estado == "1" || estado == "2" || estado == "3")
+                        estadoCorrecto = false;
+                } while (estadoCorrecto);
+                int estadoId = Validaciones.ConvertirNumero(estado);
                 return estadoId;
             }
-            catch (FormatException e)
+            catch
             {
-                Console.WriteLine("Se produjo un error inesperado " + e.Message);
+                Console.WriteLine("Se produjo un error inesperado ");
                 return 0;
             }
         }
-        private void TipoDeAlquiler(int dni, string isbn, int estadoId)
+        private void Alquiler(int dni, string isbn, int estadoId)
         {
-            Console.WriteLine("¿El alquiler es con reserva anticipada?, presione la opcion correcta");
-            Console.WriteLine("1- SI");
-            Console.WriteLine("2- NO");
-            string tipoDeAlquiler = Console.ReadLine();
-            bool ver = false;
-            if (tipoDeAlquiler == "1" || tipoDeAlquiler == "2")
+            List<Alquileres> alquileres = (from x in contexto.Alquileres where x.Cliente == crudCliente.getId(dni) && x.ISBN == isbn && x.Estado == 2 select x).ToList();
+            if (alquileres.Any())
             {
-                ver = true;
-            }
-            while (ver == false)
-            {
-                Console.WriteLine("Se detecto que ingreso un valor de estado incorrecto, intentelo nuevamente");
-                Console.WriteLine("¿El alquiler es con reserva anticipada?, presione la opcion correcta");
-                Console.WriteLine("1- SI");
-                Console.WriteLine("2- NO");
-                tipoDeAlquiler = Console.ReadLine();
-                if (tipoDeAlquiler == "1" || tipoDeAlquiler == "2")
-                {
-                    ver = true;
-                }
-            }
-            if (tipoDeAlquiler == "1")
-            {
-                alquilerConAnticipacion(dni, isbn, estadoId);
-            }
-            if (tipoDeAlquiler == "2")
-            {
-                if (VerificoStock(isbn))
-                {
-                    alquilerSinAntipacion(dni, isbn, estadoId);
-                }
-            }
-        }
-        private bool VerificoCliente(int dni)
-        {
-            bool existe = crudCliente.ExisteCliente(dni);
-            if (existe == true)
-            {
-                return true;
+
             }
             else
             {
-                Console.WriteLine("El cliente no se encuentra registrado en el sistema");
-                return false;
+
             }
         }
-        private bool VerificoLibro(string isbn)
+        
+        private Alquileres proceso(int dni, string isbn, int estadoId, DateTime fechaAlquiler, DateTime fechaReserva, DateTime fechaDevolucion, bool descuento)
         {
-            bool existe = crudLibro.ExisteISBN(isbn);
-            if (existe == true)
+            Alquileres alqui = new Alquileres();
             {
-                return true;
-            }
-            else
-            {
-                Console.WriteLine("El ISBN del libro no se encuentra registrado en el sistema");
-                return false;
-            }
-        }
-        private bool VerificoStock(string isbn)
-        {
-            bool existe = crudLibro.ExisteStock(isbn);
-            if (existe == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        private void alquilerSinAntipacion(int dni, string isbn, int estadoId)
-        {
-            using (Contexto contexto = new Contexto())
-            {
-                DateTime? fecha = null;
-                Alquileres alqui = new Alquileres();
-                {
-                    alqui.Cliente = crudCliente.getClienteId(dni);
-                    alqui.ISBN = isbn;
+                alqui.Cliente = crudCliente.getId(dni);
+                alqui.ISBN = isbn;
+                if (descuento)
                     crudLibro.DescuentoStock(isbn);
-                    alqui.Estado = estadoId;
-                    alqui.FechaAlquiler = DateTime.Today;
-                    alqui.FechaDevolucion = DateTime.Today.AddDays(7);
-                    fecha = alqui.FechaDevolucion;
-                };
-                contexto.Alquileres.Add(alqui);
-                contexto.SaveChanges();
-                string nombre = crudCliente.getNombreApellido(crudCliente.getClienteId(dni));
-                string titulo = crudLibro.getTituloLibro(isbn);
-                DateTime fechaString = Convert.ToDateTime(fecha);
-                Console.WriteLine("El sr/a " + nombre + " alquilo " + titulo + " hasta " + fechaString.ToString("dd-MM-yyyy"));
-            }
+                else
+                    crudLibro.AumentoStock(isbn);
+                alqui.Estado = estadoId;
+                alqui.FechaAlquiler = fechaAlquiler;
+                alqui.FechaReserva = fechaReserva;
+                alqui.FechaDevolucion = fechaDevolucion;
+            };
+            return alqui;
         }
         private void alquilerConAnticipacion(int dni, string isbn, int estadoId)
         {
             using (Contexto contexto = new Contexto())
             {
                 DateTime? fecha = null;
-                int clienteId = crudCliente.getClienteId(dni);
+                int clienteId = crudCliente.getId(dni);
                 List<Alquileres> lista = (from x in contexto.Alquileres where x.Cliente == clienteId && x.ISBN == isbn && x.Estado == 2 select x).ToList();
                 if (lista.Count != 0)
                 {
@@ -203,8 +133,8 @@ namespace TrabajoPractico1
                     contexto.Alquileres.Update(reserva);
                     contexto.SaveChanges();
                     fecha = reserva.FechaDevolucion;
-                    string nombre = crudCliente.getNombreApellido(crudCliente.getClienteId(dni));
-                    string titulo = crudLibro.getTituloLibro(isbn);
+                    string nombre = crudCliente.getNombre(crudCliente.getId(dni));
+                    string titulo = crudLibro.getTitulo(isbn);
                     DateTime fechaString = Convert.ToDateTime(fecha);
                     Console.WriteLine("El sr/a " + nombre + " alquilo " + titulo + " hasta " + fechaString.ToString("dd-MM-yyyy")); Console.WriteLine("El proceso se registro exitosamente, presione una tecla para continuar");
                 }
@@ -236,7 +166,7 @@ namespace TrabajoPractico1
                         Console.WriteLine(fecha.ToString("dd-MM-yyyy") + " que el libro sera devuelto de su alquiler");
                         Console.WriteLine("Desea registrar la reserva presione 1 para confirmar o cualquier tecla para salir");
                         string respuesta = Console.ReadLine();
-                        if(respuesta == "1")
+                        if (respuesta == "1")
                         {
                             ProcesoDeReserva(dni, isbn, estadoId, fecha);
                             Console.WriteLine("Su reserva se registro exitosamente para la fecha " + fecha.ToString("dd-MM-yyyy"));
@@ -247,8 +177,8 @@ namespace TrabajoPractico1
                         Console.WriteLine("En este momento no tenemos devoluciones pendientes para registrar una reserva");
                         Console.WriteLine("Esta es la lista de clientes que poseen una reserva");
                         Console.WriteLine();
-                        List<Alquileres> listaDeAlquileres = crudEstadoDeAlquileres.listaDeAlquileresReservadoEspecifico(isbn);
-                        crudEstadoDeAlquileres.mostrarReservaConDetalleDeLibro(listaDeAlquileres);
+                        //List<Alquileres> listaDeAlquileres = crudEstadoDeAlquileres.ListaDeReservas(isbn);
+                        //crudEstadoDeAlquileres.mostrarReservaConDetalleDeLibro(listaDeAlquileres);
                         Console.WriteLine();
                         Console.WriteLine("Preione 1, si desea cancelar alguna reserva pendiente o cualquier tecla para continuar");
                         string respuesta = Console.ReadLine();
@@ -259,10 +189,10 @@ namespace TrabajoPractico1
                                 Console.WriteLine("Ingrese el dni del cliente que va a cancelar su reserva");
                                 string dniString = Console.ReadLine();
                                 int dniInt = int.Parse(dniString);
-                                List<Alquileres> listaCancelar = (from x in contexto.Alquileres where x.cliente.ClienteId == crudCliente.getClienteId(dniInt) && x.Libro.ISBN == isbn && x.EstadoId.EstadoId == 2 select x).ToList();
+                                List<Alquileres> listaCancelar = (from x in contexto.Alquileres where x.cliente.ClienteId == crudCliente.getId(dniInt) && x.Libro.ISBN == isbn && x.EstadoId.EstadoId == 2 select x).ToList();
                                 if (listaCancelar.Count != 0)
                                 {
-                                    Cancelar(dniInt, isbn);
+                                    Cancelar(dniInt, isbn, estadoId);
                                     Reservar(dni, isbn, estadoId);
                                 }
                                 else
@@ -270,7 +200,7 @@ namespace TrabajoPractico1
                                     Console.WriteLine("Se produjo un error, intentelo nuevamente");
                                 }
                             }
-                            catch(FormatException e)
+                            catch (FormatException e)
                             {
                                 Console.WriteLine("Se produjo un error inesperado " + e.Message);
                             }
@@ -280,18 +210,18 @@ namespace TrabajoPractico1
                             Console.WriteLine("No se cancelo ningun registro");
                         }
                     }
-                    
+
                 }
             }
 
         }
-        private void Cancelar(int dni, string isbn)
+        private void Cancelar(int dni, string isbn, int estado)
         {
             using (Contexto contexto = new Contexto())
             {
                 try
                 {
-                    int clienteId = crudCliente.getClienteId(dni);
+                    int clienteId = crudCliente.getId(dni);
                     List<Alquileres> lista = (from x in contexto.Alquileres where (x.Cliente == clienteId && x.ISBN == isbn) && (x.Estado == 2 || x.Estado == 1) select x).ToList();
                     var list = lista.OrderBy(x => x.FechaDevolucion).ToList();
                     int masAntiguo = list.Count;
@@ -312,7 +242,7 @@ namespace TrabajoPractico1
                         Console.WriteLine("El cliente o el libro no tienen una reserva asociada");
                     }
                 }
-                catch(FormatException e)
+                catch (FormatException e)
                 {
                     Console.WriteLine("Se produjo un error inesperado " + e.Message);
                 }
@@ -324,7 +254,7 @@ namespace TrabajoPractico1
             {
                 Alquileres alqui = new Alquileres();
                 {
-                    alqui.Cliente = crudCliente.getClienteId(dni);
+                    alqui.Cliente = crudCliente.getId(dni);
                     alqui.ISBN = isbn;
                     crudLibro.DescuentoStock(isbn);
                     alqui.Estado = estadoId;
@@ -332,10 +262,40 @@ namespace TrabajoPractico1
                 };
                 contexto.Alquileres.Add(alqui);
                 contexto.SaveChanges();
-                string nombre = crudCliente.getNombreApellido(crudCliente.getClienteId(dni));
-                string titulo = crudLibro.getTituloLibro(isbn);
-                Console.WriteLine("El libro " + titulo + " fue reservado al sr/a " + nombre + ", y quitado del stock para que lo pueda alquilar");
+                string nombre = crudCliente.getNombre(crudCliente.getId(dni));
+                //string titulo = crudLibro.getTituloLibro(isbn);
+                //Console.WriteLine("El libro " + titulo + " fue reservado al sr/a " + nombre + ", y quitado del stock para que lo pueda alquilar");
                 Console.WriteLine("De lo contrario el administrador puede cancelar la reserva considerando un tiempo limitado de espera");
+            }
+        }
+        private bool VerificoCliente(int dni)
+        {
+            if (crudCliente.ExisteCliente(dni))
+                return true;
+            else
+            {
+                Console.WriteLine("El cliente no se encuentra registrado en el sistema");
+                return false;
+            }
+        }
+        private bool VerificoLibro(string isbn)
+        {
+            if (crudLibro.ExisteISBN(isbn))
+                return true;
+            else
+            {
+                Console.WriteLine("El ISBN del libro no se encuentra registrado en el sistema");
+                return false;
+            }
+        }
+        private bool VerificoStock(string isbn)
+        {
+            if (crudLibro.ExisteStock(isbn))
+                return true;
+            else
+            {
+                Console.WriteLine("En este momento no contamos con stock");
+                return false;
             }
         }
     }

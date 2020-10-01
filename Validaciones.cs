@@ -8,7 +8,7 @@ namespace TrabajoPractico1
 {
     public class Validaciones
     {
-        public String SoloLetras(string array)
+        public static String SoloLetras(string array)
         {
             while(!Regex.IsMatch(array, @"^[a-zA-Z]+$"))
             {
@@ -17,7 +17,7 @@ namespace TrabajoPractico1
             }
             return array;
         }
-        public int ConvertirNumero(string numero)
+        public static int ConvertirNumero(string numero)
         {
             int num = VerificoNumero(numero);
             while(num<0)
@@ -28,7 +28,7 @@ namespace TrabajoPractico1
             }
             return num;
         }
-        public int VerificoNumero(string numero)
+        public static int VerificoNumero(string numero)
         {
             int num = -1;
             try

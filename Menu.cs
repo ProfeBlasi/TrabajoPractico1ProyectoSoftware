@@ -101,7 +101,7 @@ namespace TrabajoPractico1
             Console.WriteLine("************************************************************************************");
             Console.WriteLine();
             Console.WriteLine();
-            crudAlquileres.CominezoRegistroDeLosAlquileres();
+            //crudAlquileres.CominezoRegistroDeLosAlquileres();
             Console.WriteLine();
             Console.WriteLine("Pulse cualquier tecla para continuar");
             Console.ReadKey(true);
@@ -115,8 +115,7 @@ namespace TrabajoPractico1
             Console.WriteLine("************************************************************************************");
             Console.WriteLine();
             Console.WriteLine();
-            List<Alquileres> lista = crudEstadoDeAlquileres.listaDeAlquileresReservado();
-            crudEstadoDeAlquileres.mostrarReservaConDetalleDeLibro(lista);
+            crudEstadoDeAlquileres.ListaDeReservas();
             Console.WriteLine();
             Console.WriteLine("Pulse cualquier tecla para continuar");
             Console.ReadKey(true);
@@ -130,7 +129,7 @@ namespace TrabajoPractico1
             Console.WriteLine("************************************************************************************");
             Console.WriteLine();
             Console.WriteLine();
-            crudLibro.mostrarListaDeLibrosConStock();
+            crudLibro.ListaDeLibrosConStock();
             Console.WriteLine();
             Console.WriteLine("Pulse cualquier tecla para continuar");
             Console.ReadKey(true);
