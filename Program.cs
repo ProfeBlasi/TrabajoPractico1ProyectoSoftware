@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
+﻿//using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
 using System;
-using System.Net.Http.Headers;
-
+//using System.Net.Http.Headers;
 namespace TrabajoPractico1
 {
     public class Program
@@ -10,7 +9,7 @@ namespace TrabajoPractico1
         {
             Menu menu = new Menu();
             menu.MenuEstrutura();
+            Console.ReadKey(true);
         }
-
     }
 }

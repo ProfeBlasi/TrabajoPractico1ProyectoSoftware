@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-using System.Windows.Markup;
+//using System.Text;
+//using System.Windows.Markup;
 
 namespace TrabajoPractico1
 {
@@ -16,7 +16,6 @@ namespace TrabajoPractico1
         private DateTime? fechaAlquiler = null;
         private DateTime? fechaReserva = null;
         private DateTime? fechaDevolucion = null;
-        //Se utiliza convencion de tipo 1 para la relacion de uno a muchos
         [Required]
         public int Cliente { get; set; }
         [ForeignKey("Cliente")]

@@ -22,7 +22,6 @@ namespace TrabajoPractico1.Migrations
                 {
                     table.PrimaryKey("PK_Cliente", x => x.ClienteId);
                 });
-
             migrationBuilder.CreateTable(
                 name: "EstadoDeAlquileres",
                 columns: table => new
@@ -35,7 +34,6 @@ namespace TrabajoPractico1.Migrations
                 {
                     table.PrimaryKey("PK_EstadoDeAlquileres", x => x.EstadoId);
                 });
-
             migrationBuilder.CreateTable(
                 name: "Libros",
                 columns: table => new
@@ -52,7 +50,6 @@ namespace TrabajoPractico1.Migrations
                 {
                     table.PrimaryKey("PK_Libros", x => x.ISBN);
                 });
-
             migrationBuilder.CreateTable(
                 name: "Alquileres",
                 columns: table => new
@@ -88,7 +85,6 @@ namespace TrabajoPractico1.Migrations
                         principalColumn: "ISBN",
                         onDelete: ReferentialAction.Cascade);
                 });
-
             migrationBuilder.InsertData(
                 table: "Cliente",
                 columns: new[] { "ClienteId", "Apellido", "DNI", "Email", "Nombre" },
@@ -99,7 +95,6 @@ namespace TrabajoPractico1.Migrations
                     { 3, "Ortiz", "3", "gortiz@gmail.com", "Gabriel" },
                     { 4, "Fernandez", "4", "jfernandez@gmail.com", "Javier" }
                 });
-
             migrationBuilder.InsertData(
                 table: "EstadoDeAlquileres",
                 columns: new[] { "EstadoId", "Descripcion" },
@@ -109,7 +104,6 @@ namespace TrabajoPractico1.Migrations
                     { 2, "Reservado" },
                     { 3, "Cancelado" }
                 });
-
             migrationBuilder.InsertData(
                 table: "Libros",
                 columns: new[] { "ISBN", "Autor", "Edicion", "Editorial", "Imagen", "Stock", "Titulo" },
@@ -122,49 +116,39 @@ namespace TrabajoPractico1.Migrations
                     { "567", "Sofocles", "Abierta", "Santillana", "vacio", 7, "Edipo Rey" },
                     { "678", "Mark Twain", "Cerrada", "Puerto de palos", "vacio", 2, "Las aventuras de Huckleberry Finn" }
                 });
-
             migrationBuilder.InsertData(
                 table: "Alquileres",
                 columns: new[] { "ID", "Cliente", "Estado", "FechaAlquiler", "FechaDevolucion", "FechaReserva", "ISBN" },
                 values: new object[] { 1, 1, 1, new DateTime(2020, 9, 24, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2020, 10, 1, 0, 0, 0, 0, DateTimeKind.Local), null, "123" });
-
             migrationBuilder.InsertData(
                 table: "Alquileres",
                 columns: new[] { "ID", "Cliente", "Estado", "FechaAlquiler", "FechaDevolucion", "FechaReserva", "ISBN" },
                 values: new object[] { 2, 2, 2, null, null, new DateTime(2020, 9, 24, 0, 0, 0, 0, DateTimeKind.Local), "234" });
-
             migrationBuilder.InsertData(
                 table: "Alquileres",
                 columns: new[] { "ID", "Cliente", "Estado", "FechaAlquiler", "FechaDevolucion", "FechaReserva", "ISBN" },
                 values: new object[] { 3, 3, 3, null, null, null, "345" });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Alquileres_Cliente",
                 table: "Alquileres",
                 column: "Cliente");
-
             migrationBuilder.CreateIndex(
                 name: "IX_Alquileres_Estado",
                 table: "Alquileres",
                 column: "Estado");
-
             migrationBuilder.CreateIndex(
                 name: "IX_Alquileres_ISBN",
                 table: "Alquileres",
                 column: "ISBN");
         }
-
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Alquileres");
-
             migrationBuilder.DropTable(
                 name: "Cliente");
-
             migrationBuilder.DropTable(
                 name: "EstadoDeAlquileres");
-
             migrationBuilder.DropTable(
                 name: "Libros");
         }

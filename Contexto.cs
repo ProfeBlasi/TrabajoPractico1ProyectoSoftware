@@ -1,28 +1,29 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace TrabajoPractico1
 {
     public class Contexto : DbContext
-    {
+    { 
+        static Contexto instance = null;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //Se debe camabiar el connection string para migrar la base de datos
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-IKK8QNO;Database=Bibli;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=RYZEN5;Database=Biblioteca;Trusted_Connection=True;");
         }
-        private DbSet<Alquileres> alquileres;
-        private DbSet<Cliente> cliente;
-        private DbSet<EstadoDeAlquileres> estadoDeAlquileres;
-        private DbSet<Libros> libros;
-        public DbSet<Alquileres> Alquileres { get => alquileres; set => alquileres = value; }
-        public DbSet<Cliente> Cliente { get => cliente; set => cliente = value; }
-        public DbSet<EstadoDeAlquileres> EstadoDeAlquileres { get => estadoDeAlquileres; set => estadoDeAlquileres = value; }
-        public DbSet<Libros> Libros { get => libros; set => libros = value; }
+        public static Contexto getInstance()
+        {
+            if (instance == null)
+            {
+                instance = new Contexto();
+            }
+            return instance;
+        }
+        public DbSet<Alquileres> Alquileres { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<EstadoDeAlquileres> EstadoDeAlquileres { get; set; }
+        public DbSet<Libros> Libros { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Registro de Clientes
             modelBuilder.Entity<Cliente>(entity =>
             {
                 entity.HasData(new Cliente
@@ -58,8 +59,6 @@ namespace TrabajoPractico1
                     Email = "jfernandez@gmail.com",
                 });
             });
-
-            //Registro de Estado de alquileres
             modelBuilder.Entity<EstadoDeAlquileres>(entity =>
             {
                 entity.HasData(new EstadoDeAlquileres
@@ -78,8 +77,6 @@ namespace TrabajoPractico1
                     Descripcion = "Cancelado",
                 });
             });
-
-            //Registro de Libros
             modelBuilder.Entity<Libros>(entity =>
             {
                 entity.HasData(new Libros
@@ -143,7 +140,6 @@ namespace TrabajoPractico1
                     Imagen = "vacio"
                 });
             });
-            //Registro de Alquileres
             modelBuilder.Entity<Alquileres>(entity =>
             {
                 entity.HasData(new Alquileres
