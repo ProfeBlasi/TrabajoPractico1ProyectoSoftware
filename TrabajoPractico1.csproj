@@ -14,4 +14,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AccesData\AccesData.csproj" />
+    <ProjectReference Include="..\Aplication\Aplication.csproj" />
+  </ItemGroup>
+
 </Project>

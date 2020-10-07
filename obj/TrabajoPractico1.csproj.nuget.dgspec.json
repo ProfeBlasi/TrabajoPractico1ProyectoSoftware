@@ -1,0 +1,274 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\TrabajoPractico1ProyectoSoftware\\TrabajoPractico1.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\AccesData\\AccesData.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\AccesData\\AccesData.csproj",
+        "projectName": "AccesData",
+        "projectPath": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\AccesData\\AccesData.csproj",
+        "packagesPath": "C:\\Users\\Ezequiel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\AccesData\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Ezequiel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\Aplication\\Aplication.csproj": {
+                "projectPath": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\Aplication\\Aplication.csproj"
+              },
+              "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\Domain\\Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "SqlKata": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "SqlKata.Execution": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\Aplication\\Aplication.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\Aplication\\Aplication.csproj",
+        "projectName": "Aplication",
+        "projectPath": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\Aplication\\Aplication.csproj",
+        "packagesPath": "C:\\Users\\Ezequiel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\Aplication\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Ezequiel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\Domain\\Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\Domain\\Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\Domain\\Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Ezequiel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Ezequiel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\TrabajoPractico1ProyectoSoftware\\TrabajoPractico1.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\TrabajoPractico1ProyectoSoftware\\TrabajoPractico1.csproj",
+        "projectName": "TrabajoPractico1",
+        "projectPath": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\TrabajoPractico1ProyectoSoftware\\TrabajoPractico1.csproj",
+        "packagesPath": "C:\\Users\\Ezequiel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\TrabajoPractico1ProyectoSoftware\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Ezequiel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\AccesData\\AccesData.csproj": {
+                "projectPath": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\AccesData\\AccesData.csproj"
+              },
+              "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\Aplication\\Aplication.csproj": {
+                "projectPath": "C:\\Users\\Ezequiel\\Desktop\\TP1-ORM-Blasi_Eduardo_Ezequiel\\Aplication\\Aplication.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
